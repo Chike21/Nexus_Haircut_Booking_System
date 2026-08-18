@@ -2171,3 +2171,27 @@ body {
     }
 
 }
+
+/* Login & Signup Form Text */
+.auth-form .form-control {
+    color: #ffffff !important;
+}
+
+.auth-form .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.auth-form .form-floating > label {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Keep input text white when typing */
+.auth-form .form-control:focus {
+    color: #ffffff !important;
+}
+
+/* Password visibility button */
+.auth-form .btn-outline-secondary {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+}
