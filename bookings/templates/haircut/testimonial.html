@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!-- Testimonial Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+
+        <div class="text-center mx-auto mb-5 wow fadeInUp"
+             data-wow-delay="0.1s"
+             style="max-width: 600px;">
+
+            <p class="d-inline-block bg-secondary text-primary py-1 px-4">
+                Testimonials
+            </p>
+
+            <h1 class="text-uppercase">
+                What Our Clients Say!
+            </h1>
+
+            <p>
+                Don't just take our word for it. Here's what some of our
+                clients have to say about their Nexus HairCut experience.
+            </p>
+
+        </div>
+
+
+        <div class="owl-carousel testimonial-carousel wow fadeInUp"
+             data-wow-delay="0.1s">
+
+
+            <!-- ITEM 1 -->
+            <div class="testimonial-item text-center"
+                 style="max-width:600px; margin:auto;">
+
+                <img
+                    class="rounded-circle mx-auto mb-3"
+                    src="{% static 'img/testimonial-1.jpg' %}"
+                    style="width:120px; height:120px; object-fit:cover;"
+                    alt="Daniel Okoro">
+
+                <h4 class="text-uppercase">
+                    Daniel Okoro
+                </h4>
+
+                <p class="text-primary">
+                    University Student
+                </p>
+
+                <p class="fs-5">
+                    "Nexus HairCut has become my go-to barbershop.
+                    The haircut was clean, the barber understood exactly
+                    what I wanted, and the whole booking process was really
+                    easy."
+                </p>
+
+            </div>
+
+
+            <!-- ITEM 2 -->
+            <div class="testimonial-item text-center"
+                 style="max-width:600px; margin:auto;">
+
+                <img
+                    class="rounded-circle mx-auto mb-3"
+                    src="{% static 'img/testimonial-2.jpg' %}"
+                    style="width:120px; height:120px; object-fit:cover;"
+                    alt="Michael Johnson">
+
+                <h4 class="text-uppercase">
+                    Michael Johnson
+                </h4>
+
+                <p class="text-primary">
+                    Entrepreneur
+                </p>
+
+                <p class="fs-5">
+                    "Great service and attention to detail. I especially
+                    liked how easy it was to choose a service and book an
+                    appointment online. I left looking fresh and feeling
+                    confident."
+                </p>
+
+            </div>
+
+
+            <!-- ITEM 3 -->
+            <div class="testimonial-item text-center"
+                 style="max-width:600px; margin:auto;">
+
+                <img
+                    class="rounded-circle mx-auto mb-3"
+                    src="{% static 'img/testimonial-3.jpg' %}"
+                    style="width:120px; height:120px; object-fit:cover;"
+                    alt="Chris Williams">
+
+                <h4 class="text-uppercase">
+                    Chris Williams
+                </h4>
+
+                <p class="text-primary">
+                    Software Developer
+                </p>
+
+                <p class="fs-5">
+                    "Professional atmosphere, friendly barbers and a
+                    quality haircut every time. The appointment system
+                    makes everything straightforward, especially when
+                    you're working with a busy schedule."
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- Testimonial End -->
+
+{% endblock %}

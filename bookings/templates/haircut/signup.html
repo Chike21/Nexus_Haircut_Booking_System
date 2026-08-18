@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Register Form Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+
+        <div class="text-center mb-4">
+            <h1 class="text-uppercase">Create Account 💈</h1>
+        </div>
+
+                  {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert">
+              </button>
+            </div>
+           {% endfor %}
+          {% endif %}
+          
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="row g-3">
+
+                <!-- Username -->
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input type="text" name="username" class="form-control bg-transparent" placeholder="Username" required>
+                        <label>Username</label>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-12">
+                    <div class="form-floating">
+                        <input type="email" name="email" class="form-control bg-transparent" placeholder="Email" required>
+                        <label>Email</label>
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="col-md-6">
+                    <div class="form-floating input-group">
+                        <input type="password" id="password1" name="password1" class="form-control bg-transparent" placeholder="Password" required>
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password1')">👁️</button>
+                        <label>Password</label>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="col-md-6">
+                    <div class="form-floating input-group">
+                        <input type="password" id="password2" name="password2" class="form-control bg-transparent" placeholder="Confirm Password" required>
+                        <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password2')">👁️</button>
+                        <label>Confirm Password</label>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12 mt-4">
+                    <button class="btn btn-primary w-100 py-3 rounded-pill" type="submit">
+                        Create Account
+                    </button>
+                </div>
+
+                <p class="mt-3 text-center">
+                    Already have an account ?
+                    <a href="{% url 'login' %}" class="btn btn-link p-0">Login</a>
+                </p>
+
+            </div>
+        </form>
+
+    </div>
+</div>
+<!-- Register Form End -->
+
+{% endblock %}

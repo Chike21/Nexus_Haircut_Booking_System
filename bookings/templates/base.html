@@ -1,0 +1,375 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HairCut - Hair Salon HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.ico' %}" rel="icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Oswald:wght@600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet" />
+    <link
+      href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" />
+  </head>
+
+  <body>
+    <!-- Navbar goes here -->
+    <!-- Spinner Start -->
+    <div
+      id="spinner"
+      class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center"
+    >
+      <div
+        class="spinner-grow text-primary"
+        style="width: 3rem; height: 3rem"
+        role="status"
+      >
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- Spinner End -->
+
+   <!-- Navbar Start -->
+<nav
+  class="navbar navbar-expand-lg bg-secondary navbar-dark sticky-top py-lg-0 px-lg-5"
+>
+    <!-- Logo -->
+    <a href="{% url 'home' %}" class="navbar-brand ms-4 ms-lg-0">
+        <h1 class="mb-0 text-primary text-uppercase">
+            <i class="fa fa-cut me-3"></i>Nexus HairCut
+        </h1>
+    </a>
+
+    <!-- Mobile Toggle -->
+    <button
+        type="button"
+        class="navbar-toggler me-4"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+
+            <!-- Home -->
+            <a
+                href="{% url 'home' %}"
+                class="nav-item nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}"
+            >
+                Home
+            </a>
+
+            <!-- About -->
+            <a
+                href="{% url 'about' %}"
+                class="nav-item nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
+            >
+                About
+            </a>
+
+            <!-- Services -->
+            <a
+                href="{% url 'service' %}"
+                class="nav-item nav-link {% if request.resolver_match.url_name == 'service' %}active{% endif %}"
+            >
+                Services
+            </a>
+
+            <!-- Pages Dropdown -->
+            <div class="nav-item dropdown">
+
+                <a
+                    href="#"
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    Pages
+                </a>
+
+                <div class="dropdown-menu navbar-dropdown">
+
+
+                    <a href="{% url 'team' %}" class="dropdown-item">
+                        <i class="fa fa-users me-2"></i>
+                        Our Barbers
+                    </a>
+
+                    <a href="{% url 'open' %}" class="dropdown-item">
+                        <i class="fa fa-clock me-2"></i>
+                        Working Hours
+                    </a>
+
+                    <a href="{% url 'testimonial' %}" class="dropdown-item">
+                        <i class="fa fa-star me-2"></i>
+                        Testimonials
+                    </a>
+
+                    <a href="{% url 'contact' %}" class="dropdown-item">
+                        <i class="fa fa-envelope me-2"></i>
+                        Contact Us
+                    </a>
+
+                </div>
+            </div>
+
+           {% if user.is_authenticated %}
+
+    <!-- Navbar Actions -->
+    <div class="navbar-actions">
+
+        <!-- Book Appointment -->
+        <a
+            href="{% url 'appointment' %}"
+            class="btn btn-primary rounded-pill book-btn
+            {% if request.resolver_match.url_name == 'appointment' %}active{% endif %}"
+        >
+            <i class="fa fa-calendar-alt me-2"></i>
+            Book Appointment
+        </a>
+
+
+        <!-- User Profile -->
+        <div class="nav-item dropdown profile-dropdown">
+
+            <a
+                href="#"
+                class="profile-pill dropdown-toggle"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+
+                <span class="profile-avatar">
+                    {{ user.username|first|upper }}
+                </span>
+
+                <span class="profile-name">
+                    {{ user.username }}
+                </span>
+
+            </a>
+
+
+            <!-- Profile Dropdown -->
+            <div class="dropdown-menu dropdown-menu-end profile-menu">
+
+                <div class="profile-menu-header">
+
+                    <div class="profile-avatar large">
+                        {{ user.username|first|upper }}
+                    </div>
+
+                    <div class="profile-menu-name">
+                        {{ user.username }}
+                    </div>
+
+                    <small>
+                        Welcome back 👋
+                    </small>
+
+                </div>
+
+
+                <div class="dropdown-divider"></div>
+
+
+                <!-- My Appointments -->
+                <a
+                    href="{% url 'my_appointments' %}"
+                    class="dropdown-item"
+                >
+                    <i class="fa fa-calendar-alt me-2"></i>
+                    My Appointments
+                </a>
+
+
+                <!-- Logout -->
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="dropdown-item logout-item"
+                    >
+                        <i class="fa fa-sign-out-alt me-2"></i>
+                        Logout
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% else %}
+
+    <!-- Logged Out -->
+    <div class="navbar-actions">
+
+        <a
+            href="{% url 'login' %}"
+            class="nav-item nav-link navbar-login"
+        >
+            Login
+        </a>
+
+        <a
+            href="{% url 'signup' %}"
+            class="navbar-register"
+        >
+            <i class="fa fa-user-plus me-1"></i>
+            Register
+        </a>
+
+    </div>
+
+{% endif %}
+
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+    {% block content %} {% endblock %}
+
+    <!-- Footer goes here-->
+    <!-- Footer Start -->
+    <div
+      class="container-fluid bg-secondary text-light footer mt-5 pt-5 wow fadeIn"
+      data-wow-delay="0.1s"
+    >
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-lg-4 col-md-6">
+            <h4 class="text-uppercase mb-4">Get In Touch</h4>
+            <div class="d-flex align-items-center mb-2">
+              <div class="btn-square bg-dark flex-shrink-0 me-3">
+                <span class="fa fa-map-marker-alt text-primary"></span>
+              </div>
+              <span>Oak Dr, Lekki Phase 1, Nigeria</span>
+            </div>
+            <div class="d-flex align-items-center mb-2">
+              <div class="btn-square bg-dark flex-shrink-0 me-3">
+                <span class="fa fa-phone-alt text-primary"></span>
+              </div>
+              <span>+234 9122 8344 71</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="btn-square bg-dark flex-shrink-0 me-3">
+                <span class="fa fa-envelope-open text-primary"></span>
+              </div>
+              <span>chikezirimjustice@example.com</span>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h4 class="text-uppercase mb-4">Quick Links</h4>
+            <a class="btn btn-link" href="{% url 'about' %}">About Us</a>
+            <a class="btn btn-link" href="">Contact Us</a>
+            <a class="btn btn-link" href="">Our Services</a>
+            <a class="btn btn-link" href="">Terms & Condition</a>
+            <a class="btn btn-link" href="">Support</a>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <h4 class="text-uppercase mb-4">Newsletter</h4>
+            <div class="position-relative mb-4">
+              <input
+                class="form-control border-0 w-100 py-3 ps-4 pe-5"
+                type="text"
+                placeholder="Your email"
+              />
+              <button
+                type="button"
+                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 rounded-pill"
+              >
+                SignUp
+              </button>
+            </div>
+            <div class="d-flex pt-1 m-n1">
+              <a class="btn btn-lg-square btn-dark text-primary m-1" href=""
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a class="btn btn-lg-square btn-dark text-primary m-1" href=""
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a class="btn btn-lg-square btn-dark text-primary m-1" href=""
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a class="btn btn-lg-square btn-dark text-primary m-1" href=""
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="copyright">
+          <div class="row">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              &copy; <a class="border-bottom" href="#">Nexus Haircut</a>, All
+              Right Reserved.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg-square back-to-top"
+      ><i class="bi bi-arrow-up"></i
+    ></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+</html>

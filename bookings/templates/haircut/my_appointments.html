@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Appointments Section -->
+<div class="container-xxl py-5">
+
+    <div class="container">
+
+        <!-- Messages -->
+        {% if messages %}
+
+            {% for message in messages %}
+
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+
+                    <i class="fa fa-check-circle me-2"></i>
+
+                    {{ message }}
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                    </button>
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+
+        <!-- Page Heading -->
+        <div class="text-center mb-5">
+
+            <h2 class="text-uppercase">
+                Your Appointments
+            </h2>
+
+            <p class="text-muted">
+                View and manage your haircut bookings.
+            </p>
+
+        </div>
+
+
+        {% if appointments %}
+
+            <div class="row g-4">
+
+                {% for appointment in appointments %}
+
+                    <div class="col-lg-6">
+
+                        <div class="my-appointment-card">
+
+                            <!-- Card Header -->
+                            <div class="appointment-card-header">
+
+                                <div>
+
+                                    <h4 class="mb-1">
+                                        {{ appointment.service.name }}
+                                    </h4>
+
+                                    <small>
+                                        <i class="fa fa-calendar-alt me-1"></i>
+
+                                        {{ appointment.date|date:"d M Y" }}
+                                    </small>
+
+                                </div>
+
+
+                                <!-- Status -->
+                                <div>
+
+                                    {% if appointment.status == "Pending" %}
+
+                                        <span class="appointment-status pending">
+                                            Pending
+                                        </span>
+
+                                    {% elif appointment.status == "Confirmed" %}
+
+                                        <span class="appointment-status confirmed">
+                                            Confirmed
+                                        </span>
+
+                                    {% elif appointment.status == "Completed" %}
+
+                                        <span class="appointment-status completed">
+                                            Completed
+                                        </span>
+
+                                    {% elif appointment.status == "Cancelled" %}
+
+                                        <span class="appointment-status cancelled">
+                                            Cancelled
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Card Body -->
+                            <div class="appointment-card-body">
+
+                                <div class="appointment-info">
+
+                                    <div class="info-item">
+
+                                        <i class="fa fa-clock"></i>
+
+                                        <div>
+                                            <small>Time</small>
+
+                                            <strong>
+                                                {{ appointment.time|time:"g:i A" }}
+                                            </strong>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="info-item">
+
+                                        <i class="fa fa-money-bill-wave"></i>
+
+                                        <div>
+                                            <small>Price</small>
+
+                                            <strong>
+                                                ₦{{ appointment.service.price }}
+                                            </strong>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="info-item">
+
+                                        <i class="fa fa-hourglass-half"></i>
+
+                                        <div>
+                                            <small>Duration</small>
+
+                                            <strong>
+                                                {{ appointment.service.duration }} mins
+                                            </strong>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <hr>
+
+
+                                <!-- Customer Details -->
+                                <div class="customer-details">
+
+                                    <p>
+                                        <i class="fa fa-user me-2"></i>
+
+                                        <strong>Name:</strong>
+                                        {{ appointment.name }}
+                                    </p>
+
+                                    <p>
+                                        <i class="fa fa-phone me-2"></i>
+
+                                        <strong>Phone:</strong>
+                                        {{ appointment.phone }}
+                                    </p>
+
+                                    <p class="mb-0">
+                                        <i class="fa fa-envelope me-2"></i>
+
+                                        <strong>Email:</strong>
+                                        {{ appointment.email }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Card Footer -->
+                            {% if appointment.status == "Pending" %}
+
+                                <div class="appointment-card-footer">
+
+                                    <a
+                                        href="{% url 'cancel_appointment' appointment.id %}"
+                                        class="btn btn-danger rounded-pill px-4"
+                                        onclick="return confirm('Are you sure you want to cancel this appointment?');"
+                                    >
+
+                                        <i class="fa fa-times me-2"></i>
+
+                                        Cancel Appointment
+
+                                    </a>
+
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+        {% else %}
+
+            <!-- No Appointments -->
+            <div class="empty-appointments">
+
+                <div class="empty-icon">
+
+                    <i class="fa fa-calendar-times"></i>
+
+                </div>
+
+                <h3>
+                    No Appointments Yet
+                </h3>
+
+                <p>
+                    You haven't booked an appointment yet.
+                </p>
+
+                <a
+                    href="{% url 'appointment' %}"
+                    class="btn btn-primary rounded-pill px-5 py-3"
+                >
+
+                    <i class="fa fa-calendar-alt me-2"></i>
+
+                    Book an Appointment
+
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

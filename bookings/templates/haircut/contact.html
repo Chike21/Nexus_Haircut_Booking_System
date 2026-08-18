@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- ==============================
+     PAGE HEADER
+============================== -->
+<div
+    class="container-fluid page-header py-5 mb-5 wow fadeIn"
+    data-wow-delay="0.1s"
+>
+    <div class="container text-center py-5">
+
+        <h1 class="display-3 text-white text-uppercase mb-3 animated slideInDown">
+            Contact
+        </h1>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb justify-content-center text-uppercase mb-0">
+
+                <li class="breadcrumb-item">
+                    <a class="text-white" href="{% url 'home' %}">
+                        Home
+                    </a>
+                </li>
+
+                <li
+                    class="breadcrumb-item text-primary active"
+                    aria-current="page"
+                >
+                    Contact
+                </li>
+
+            </ol>
+        </nav>
+
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- ==============================
+     CONTACT SECTION
+============================== -->
+<div class="container-xxl py-5 contact-page">
+
+    <div class="container">
+
+        <div class="row g-0">
+
+
+            <!-- ==============================
+                 CONTACT FORM
+            ============================== -->
+            <div
+                class="col-lg-6 wow fadeIn"
+                data-wow-delay="0.1s"
+            >
+
+                <div class="bg-secondary p-5 h-100 contact-form-box">
+
+                    <!-- Section Label -->
+                    <p class="d-inline-block bg-dark text-primary py-1 px-4">
+                        Contact Us
+                    </p>
+
+
+                    <!-- Heading -->
+                    <h1 class="text-uppercase text-white mb-4">
+                        Let's Talk About Your Next Look
+                    </h1>
+
+
+                    <!-- Description -->
+                    <p class="mb-4 text-white contact-description">
+                        Have a question about our services, prices, or
+                        appointments? Send us a message and our team will
+                        be happy to assist you.
+                    </p>
+
+
+                    <!-- Contact Form -->
+                    <form>
+
+                        <div class="row g-3">
+
+
+                            <!-- Name -->
+                            <div class="col-md-6">
+
+                                <div class="form-floating">
+
+                                    <input
+                                        type="text"
+                                        class="form-control bg-transparent text-white"
+                                        id="name"
+                                        placeholder="Your Name"
+                                        required
+                                    >
+
+                                    <label
+                                        for="name"
+                                        class="text-white"
+                                    >
+                                        Your Name
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+
+                                <div class="form-floating">
+
+                                    <input
+                                        type="email"
+                                        class="form-control bg-transparent text-white"
+                                        id="email"
+                                        placeholder="Your Email"
+                                        required
+                                    >
+
+                                    <label
+                                        for="email"
+                                        class="text-white"
+                                    >
+                                        Your Email
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Subject -->
+                            <div class="col-12">
+
+                                <div class="form-floating">
+
+                                    <input
+                                        type="text"
+                                        class="form-control bg-transparent text-white"
+                                        id="subject"
+                                        placeholder="Subject"
+                                        required
+                                    >
+
+                                    <label
+                                        for="subject"
+                                        class="text-white"
+                                    >
+                                        Subject
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Message -->
+                            <div class="col-12">
+
+                                <div class="form-floating">
+
+                                    <textarea
+                                        class="form-control bg-transparent text-white"
+                                        placeholder="Leave a message here"
+                                        id="message"
+                                        style="height: 120px"
+                                        required
+                                    ></textarea>
+
+                                    <label
+                                        for="message"
+                                        class="text-white"
+                                    >
+                                        Your Message
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Submit Button -->
+                            <div class="col-12">
+
+                                <button
+                                    class="btn btn-primary w-100 py-3 rounded-pill contact-submit-btn"
+                                    type="submit"
+                                >
+                                    Send Message
+                                    <i class="fa fa-paper-plane ms-2"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- ==============================
+                 CONTACT INFORMATION
+            ============================== -->
+            <div
+                class="col-lg-6 wow fadeIn"
+                data-wow-delay="0.5s"
+            >
+
+                <div class="bg-dark h-100 p-5 contact-info-box">
+
+
+                    <!-- Section Label -->
+                    <p class="d-inline-block bg-secondary text-primary py-1 px-4">
+                        Find Us
+                    </p>
+
+
+                    <!-- Heading -->
+                    <h2 class="text-uppercase text-white mb-4">
+                        Visit Nexus HairCut
+                    </h2>
+
+
+                    <!-- Description -->
+                    <p class="text-white mb-4 contact-description">
+                        Ready for a fresh look? Visit Nexus HairCut and
+                        experience professional grooming in a comfortable
+                        and welcoming environment.
+                    </p>
+
+
+                    <!-- ==============================
+                         LOCATION
+                    ============================== -->
+                    <div class="d-flex align-items-center mb-4 contact-detail">
+
+                        <div
+                            class="btn-square bg-secondary flex-shrink-0 me-3"
+                        >
+                            <i class="fa fa-map-marker-alt text-primary"></i>
+                        </div>
+
+                        <div>
+
+                            <h6 class="text-uppercase text-white mb-1">
+                                Location
+                            </h6>
+
+                            <span class="text-white">
+                                Federal University of Technology, Owerri
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==============================
+                         PHONE
+                    ============================== -->
+                    <div class="d-flex align-items-center mb-4 contact-detail">
+
+                        <div
+                            class="btn-square bg-secondary flex-shrink-0 me-3"
+                        >
+                            <i class="fa fa-phone-alt text-primary"></i>
+                        </div>
+
+                        <div>
+
+                            <h6 class="text-uppercase text-white mb-1">
+                                Phone
+                            </h6>
+
+                            <span class="text-white">
+                                +234 9122 8344 71
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==============================
+                         EMAIL
+                    ============================== -->
+                    <div class="d-flex align-items-center mb-4 contact-detail">
+
+                        <div
+                            class="btn-square bg-secondary flex-shrink-0 me-3"
+                        >
+                            <i class="fa fa-envelope text-primary"></i>
+                        </div>
+
+                        <div>
+
+                            <h6 class="text-uppercase text-white mb-1">
+                                Email
+                            </h6>
+
+                            <span class="text-white contact-email">
+                                chikezirimjustice@nexushaircut.com
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==============================
+                         MAP
+                    ============================== -->
+                    <div
+                        class="mt-4 contact-map"
+                    >
+
+                        <iframe
+                            class="google-map w-100 h-100"
+                            src="https://www.google.com/maps?q=Federal%20University%20of%20Technology%20Owerri&output=embed"
+                            frameborder="0"
+                            allowfullscreen
+                            loading="lazy"
+                            title="Nexus HairCut Location"
+                        ></iframe>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Contact End -->
+
+
+{% endblock %}

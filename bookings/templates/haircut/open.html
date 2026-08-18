@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Working Hours Start -->
+<div class="container-xxl py-5">
+
+    <div class="container">
+
+        <div class="working-hours-card">
+
+            <div class="row g-0 align-items-stretch">
+
+                <!-- Image -->
+                <div class="col-lg-6">
+
+                    <div class="working-hours-image">
+
+                        <img
+                            src="{% static 'img/open.jpg' %}"
+                            alt="Nexus Haircut"
+                        >
+
+                        <div class="open-badge">
+                            <span class="open-dot"></span>
+                            We're Open
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Working Hours -->
+                <div class="col-lg-6">
+
+                    <div class="working-hours-content">
+
+                        <span class="section-label">
+                            Working Hours
+                        </span>
+
+                        <h1 class="text-uppercase mb-3">
+                            Professional Barbers
+                            Are Waiting For You
+                        </h1>
+
+                        <p class="working-hours-intro">
+                            Step in, sit back and let our professional
+                            barbers give you a fresh new look.
+                        </p>
+
+
+                        <!-- Opening Hours -->
+
+                        <div class="hours-list">
+
+                            <div class="hours-row">
+                                <span>Monday</span>
+                                <strong>09 AM - 09 PM</strong>
+                            </div>
+
+                            <div class="hours-row">
+                                <span>Tuesday</span>
+                                <strong>09 AM - 09 PM</strong>
+                            </div>
+
+                            <div class="hours-row">
+                                <span>Wednesday</span>
+                                <strong>09 AM - 09 PM</strong>
+                            </div>
+
+                            <div class="hours-row">
+                                <span>Thursday</span>
+                                <strong>09 AM - 09 PM</strong>
+                            </div>
+
+                            <div class="hours-row">
+                                <span>Friday</span>
+                                <strong>09 AM - 09 PM</strong>
+                            </div>
+
+                            <div class="hours-row closed-row">
+                                <span>Saturday / Sunday</span>
+                                <strong>Closed</strong>
+                            </div>
+
+                        </div>
+
+
+                        <!-- CTA -->
+
+                        <div class="mt-4">
+
+                            <a
+                                href="{% url 'appointment' %}"
+                                class="btn btn-primary rounded-pill px-4 py-3"
+                            >
+                                <i class="fa fa-calendar-alt me-2"></i>
+                                Book an Appointment
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- Working Hours End -->
+
+{% endblock %}

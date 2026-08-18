@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+    
+
+<!-- Services Section -->
+<div class="container-xxl py-5">
+
+    <div class="container">
+
+        <!-- Heading -->
+        <div class="text-center mb-5">
+
+            <h5 class="text-primary text-uppercase">
+                Our Price List
+            </h5>
+
+            <h1 class="text-uppercase">
+                Choose Your Style
+            </h1>
+
+            <p class="text-muted mx-auto" style="max-width: 650px;">
+                From clean everyday cuts to complete grooming,
+                we've got a style for you.
+            </p>
+
+        </div>
+
+
+        {% if services %}
+
+        <div class="row g-4">
+
+            {% for service in services %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="service-price-card">
+
+                    <!-- Icon -->
+                    <div class="service-icon">
+
+                        <i class="fa fa-cut"></i>
+
+                    </div>
+
+
+                    <!-- Service Name -->
+                    <h3 class="text-uppercase">
+                        {{ service.name }}
+                    </h3>
+
+
+                    <!-- Description -->
+                    {% if service.description %}
+
+                    <p class="service-description">
+                        {{ service.description }}
+                    </p>
+
+                    {% else %}
+
+                    <p class="service-description">
+                        Professional grooming service from Nexus Haircut.
+                    </p>
+
+                    {% endif %}
+
+
+                    <!-- Price -->
+                    <div class="service-price">
+
+                        <span class="currency">
+                            ₦
+                        </span>
+
+                        <span class="amount">
+                            {{ service.price|floatformat:0 }}
+                        </span>
+
+                    </div>
+
+
+                    <!-- Duration -->
+                    <div class="service-duration">
+
+                        <i class="fa fa-clock me-2"></i>
+
+                        {{ service.duration }} minutes
+
+                    </div>
+
+
+                    <!-- Book Button -->
+                    <a
+                        href="{% url 'appointment' %}"
+                        class="btn btn-primary rounded-pill px-4 py-2 mt-3"
+                    >
+
+                        Book This Service
+
+                        <i class="fa fa-arrow-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <!-- No Services -->
+        <div class="text-center py-5">
+
+            <div class="mb-3">
+
+                <i class="fa fa-cut fa-3x text-primary"></i>
+
+            </div>
+
+            <h3>
+                No Services Available
+            </h3>
+
+            <p class="text-muted">
+                Our services are currently being updated.
+                Please check back soon.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

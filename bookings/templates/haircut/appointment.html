@@ -1,0 +1,575 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Booking Section -->
+<div class="container-xxl py-5">
+    <div class="container">
+
+        <!-- Django Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ message }}
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert">
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        <div class="row g-5">
+
+            <!-- ============================= -->
+            <!-- LEFT: BOOKING FORM -->
+            <!-- ============================= -->
+
+            <div class="col-lg-7">
+
+                <div class="booking-panel">
+
+                    <div class="booking-heading">
+                        <span class="booking-eyebrow">
+                            APPOINTMENT
+                        </span>
+
+                        <h2>
+                            Book Your Fresh Cut 💈
+                        </h2>
+
+                        <p>
+                            Choose your service and preferred time.
+                            We'll take care of the rest.
+                        </p>
+                    </div>
+
+
+                    <form method="POST" id="bookingForm">
+
+                        {% csrf_token %}
+
+
+                        <!-- ============================= -->
+                        <!-- SERVICE SELECTION -->
+                        <!-- ============================= -->
+
+                        <div class="booking-section">
+
+                            <div class="section-heading">
+
+                                <span class="section-number">01</span>
+
+                                <div>
+                                    <h4>Choose Your Service</h4>
+                                    <p>Select the service you want.</p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="service-grid">
+
+                                {% for service in services %}
+
+                                    <label class="service-option">
+
+                                        <input
+                                            type="radio"
+                                            name="service"
+                                            value="{{ service.id }}"
+                                            data-name="{{ service.name }}"
+                                            data-price="{{ service.price }}"
+                                            data-duration="{{ service.duration }}"
+                                            required
+                                        >
+
+                                        <div class="service-card">
+
+                                            <div class="service-card-top">
+
+                                                <div class="service-icon">
+                                                    <i class="fa fa-cut"></i>
+                                                </div>
+
+                                                <div class="service-check">
+                                                    <i class="fa fa-check"></i>
+                                                </div>
+
+                                            </div>
+
+
+                                            <h5>
+                                                {{ service.name }}
+                                            </h5>
+
+
+                                            {% if service.description %}
+                                                <p>
+                                                    {{ service.description }}
+                                                </p>
+                                            {% endif %}
+
+
+                                            <div class="service-meta">
+
+                                                <span>
+                                                    ₦{{ service.price }}
+                                                </span>
+
+                                                <span>
+                                                    <i class="fa fa-clock me-1"></i>
+                                                    {{ service.duration }} mins
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    </label>
+
+                                {% empty %}
+
+                                    <div class="alert alert-warning">
+                                        No services are currently available.
+                                    </div>
+
+                                {% endfor %}
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ============================= -->
+                        <!-- DATE & TIME -->
+                        <!-- ============================= -->
+
+                        <div class="booking-section">
+
+                            <div class="section-heading">
+
+                                <span class="section-number">02</span>
+
+                                <div>
+                                    <h4>Date & Time</h4>
+                                    <p>Choose when you'd like to visit.</p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row g-3">
+
+                                <!-- Date -->
+                                <div class="col-md-6">
+
+                                    <div class="form-floating">
+
+                                        <input
+                                            type="date"
+                                            class="form-control"
+                                            id="bookingDate"
+                                            name="date"
+                                            min="{{ today }}"
+                                            required
+                                        >
+
+                                        <label for="bookingDate">
+                                            Choose Date
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Time -->
+                                <div class="col-md-6">
+
+                                    <div class="form-floating">
+
+                                        <input
+                                            type="time"
+                                            class="form-control"
+                                            id="bookingTime"
+                                            name="time"
+                                            required
+                                        >
+
+                                        <label for="bookingTime">
+                                            Choose Time
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ============================= -->
+                        <!-- CUSTOMER DETAILS -->
+                        <!-- ============================= -->
+
+                        <div class="booking-section">
+
+                            <div class="section-heading">
+
+                                <span class="section-number">03</span>
+
+                                <div>
+                                    <h4>Your Details</h4>
+                                    <p>Tell us how we can reach you.</p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row g-3">
+
+                                <!-- Name -->
+                                <div class="col-md-6">
+
+                                    <div class="form-floating">
+
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            id="name"
+                                            name="name"
+                                            placeholder="Full Name"
+                                            required
+                                        >
+
+                                        <label for="name">
+                                            Full Name
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Phone -->
+                                <div class="col-md-6">
+
+                                    <div class="form-floating">
+
+                                        <input
+                                            type="tel"
+                                            class="form-control"
+                                            id="phone"
+                                            name="phone"
+                                            placeholder="Phone Number"
+                                            required
+                                        >
+
+                                        <label for="phone">
+                                            Phone Number
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Email -->
+                                <div class="col-12">
+
+                                    <div class="form-floating">
+
+                                        <input
+                                            type="email"
+                                            class="form-control"
+                                            id="email"
+                                            name="email"
+                                            placeholder="Email"
+                                            required
+                                        >
+
+                                        <label for="email">
+                                            Email
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Submit -->
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary booking-submit"
+                        >
+
+                            <i class="fa fa-calendar-check me-2"></i>
+
+                            Book Appointment
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================= -->
+            <!-- RIGHT: BOOKING SUMMARY -->
+            <!-- ============================= -->
+
+            <div class="col-lg-5">
+
+                <div class="booking-summary">
+
+                    <div class="summary-top">
+
+                        <span>
+                            YOUR BOOKING
+                        </span>
+
+                        <div class="summary-icon">
+                            <i class="fa fa-calendar-check"></i>
+                        </div>
+
+                    </div>
+
+
+                    <h3>
+                        Booking Summary
+                    </h3>
+
+
+                    <p class="summary-subtitle">
+                        Your selected appointment will appear here.
+                    </p>
+
+
+                    <!-- Selected Service -->
+
+                    <div class="summary-service">
+
+                        <div class="summary-service-icon">
+                            <i class="fa fa-cut"></i>
+                        </div>
+
+                        <div>
+
+                            <small>SERVICE</small>
+
+                            <h5 id="summaryService">
+                                Select a service
+                            </h5>
+
+                            <span id="summaryDuration">
+                                —
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Summary Details -->
+
+                    <div class="summary-details">
+
+                        <div class="summary-row">
+
+                            <div class="summary-label">
+                                <i class="fa fa-calendar-alt"></i>
+                                Date
+                            </div>
+
+                            <strong id="summaryDate">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <div class="summary-label">
+                                <i class="fa fa-clock"></i>
+                                Time
+                            </div>
+
+                            <strong id="summaryTime">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Total -->
+
+                    <div class="summary-total">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <strong id="summaryPrice">
+                            ₦0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-note">
+
+                        <i class="fa fa-info-circle"></i>
+
+                        You can cancel your appointment while it is still pending.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const serviceInputs = document.querySelectorAll(
+        'input[name="service"]'
+    );
+
+    const dateInput = document.getElementById("bookingDate");
+    const timeInput = document.getElementById("bookingTime");
+
+    const summaryService =
+        document.getElementById("summaryService");
+
+    const summaryDuration =
+        document.getElementById("summaryDuration");
+
+    const summaryPrice =
+        document.getElementById("summaryPrice");
+
+    const summaryDate =
+        document.getElementById("summaryDate");
+
+    const summaryTime =
+        document.getElementById("summaryTime");
+
+
+    // =========================
+    // SERVICE
+    // =========================
+
+    serviceInputs.forEach(function (input) {
+
+        input.addEventListener("change", function () {
+
+            const serviceName =
+                this.dataset.name;
+
+            const servicePrice =
+                this.dataset.price;
+
+            const serviceDuration =
+                this.dataset.duration;
+
+
+            summaryService.textContent =
+                serviceName;
+
+            summaryPrice.textContent =
+                "₦" + Number(servicePrice).toLocaleString();
+
+            summaryDuration.textContent =
+                serviceDuration + " minutes";
+
+        });
+
+    });
+
+
+    // =========================
+    // DATE
+    // =========================
+
+    dateInput.addEventListener("change", function () {
+
+        if (!this.value) {
+            summaryDate.textContent = "—";
+            return;
+        }
+
+        const selectedDate =
+            new Date(this.value + "T00:00:00");
+
+        summaryDate.textContent =
+            selectedDate.toLocaleDateString(
+                "en-US",
+                {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                }
+            );
+
+    });
+
+
+    // =========================
+    // TIME
+    // =========================
+
+    timeInput.addEventListener("change", function () {
+
+        if (!this.value) {
+            summaryTime.textContent = "—";
+            return;
+        }
+
+        const [hours, minutes] =
+            this.value.split(":");
+
+        const time =
+            new Date();
+
+        time.setHours(
+            hours,
+            minutes
+        );
+
+        summaryTime.textContent =
+            time.toLocaleTimeString(
+                "en-US",
+                {
+                    hour: "numeric",
+                    minute: "2-digit"
+                }
+            );
+
+    });
+
+});
+</script>
+
+{% endblock %}
